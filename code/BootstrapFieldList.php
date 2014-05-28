@@ -16,17 +16,22 @@ class BootstrapFieldList extends Extension {
 			if($f instanceof Tab) {
 				$f->Fields()->bootstrapify();
 			}
-			
 
-			$template = "Bootstrap{$f->class}_holder";			
-			if(SSViewer::hasTemplate($template)) {					
-				$f->setFieldHolderTemplate($template);				
+			if(!in_array($f, array('CheckboxField', 'FileField', 'HiddenField', 'FormAction'))) {
+				$f->addExtraClass('form-control');
 			}
-			else {				
+
+
+
+			$template = "Bootstrap{$f->class}_holder";
+			if(SSViewer::hasTemplate($template)) {
+				$f->setFieldHolderTemplate($template);
+			}
+			else {
 				$f->setFieldHolderTemplate("BootstrapFieldHolder");
 			}
 
-			foreach(array_reverse(ClassInfo::ancestry($f)) as $className) {						
+			foreach(array_reverse(ClassInfo::ancestry($f)) as $className) {
 				$bootstrapCandidate = "Bootstrap{$className}";
 				$nativeCandidate = $className;
 				if(SSViewer::hasTemplate($bootstrapCandidate)) {
@@ -40,7 +45,7 @@ class BootstrapFieldList extends Extension {
 			}
 		}
 
-		return $this->owner;		
+		return $this->owner;
 
 	}
 }

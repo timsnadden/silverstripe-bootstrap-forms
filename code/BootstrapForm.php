@@ -11,7 +11,7 @@
  * @package boostrap_forms
  */
 class BootstrapForm extends Form {
-	
+
 
 
 
@@ -65,8 +65,6 @@ class BootstrapForm extends Form {
 	public static function apply_bootstrap_to_fieldlist($fields) {
 		$fields->bootstrapify();
 	}
-
-
 
 
 	/**
